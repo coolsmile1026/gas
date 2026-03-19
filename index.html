@@ -71,33 +71,30 @@
             background: white;
             box-shadow: 0 0 0 3px rgba(43,127,193,0.1);
         }
-        .constant-section {
+        .constant-note {
             background: #f0f5fa;
-            border-radius: 12px;
-            padding: 8px 10px;
+            border-radius: 14px;
+            padding: 10px 14px;
             margin: 8px 0 12px;
-            border-left: 3px solid #2b7fc1;
-        }
-        .constant-title {
-            font-weight: 600;
-            font-size: 0.8rem;
+            border-left: 4px solid #2b7fc1;
+            font-size: 0.9rem;
             color: #1e3b5c;
-            margin-right: 6px;
-            white-space: nowrap;
         }
         .constant-tags {
             display: flex;
             flex-wrap: wrap;
             align-items: center;
-            gap: 4px;
+            gap: 6px;
+            margin-top: 4px;
         }
         .constant-item {
+            display: inline-block;
             background: white;
-            padding: 3px 8px;
-            border-radius: 20px;
+            padding: 4px 12px;
+            border-radius: 30px;
             border: 1px solid #cbdae9;
             font-weight: 500;
-            font-size: 0.8rem;
+            font-size: 0.85rem;
             white-space: nowrap;
         }
         .result-area {
@@ -159,49 +156,47 @@
         <h2>🔧 燃气管径计算器</h2>
         <div class="sub">基于 GB 50251 (威莫斯公式) · 固定参数已内置</div>
 
-        <!-- 固定参数一行显示 -->
-        <div class="constant-section">
-            <div style="display: flex; align-items: center; gap: 6px;">
-                <span class="constant-title">📌固定参数：</span>
-                <div class="constant-tags">
-                    <span class="constant-item">Δ=0.6</span>
-                    <span class="constant-item">Z=0.8</span>
-                    <span class="constant-item">E=0.9</span>
-                    <span class="constant-item">15℃</span>
-                </div>
+        <!-- 恢复原来的固定参数样式 -->
+        <div class="constant-note">
+            <div style="font-weight: 600; margin-bottom: 6px;">📌 本计算器使用以下固定参数：</div>
+            <div class="constant-tags">
+                <span class="constant-item">⚖️ 相对密度 Δ = 0.6</span>
+                <span class="constant-item">📦 压缩因子 Z = 0.8</span>
+                <span class="constant-item">⚙️ 效率系数 E = 0.9</span>
+                <span class="constant-item">🌡️ 气体温度 = 15℃</span>
             </div>
         </div>
 
         <div class="input-grid">
             <div class="input-row">
                 <label>📊 输气量 <span style="color:#1f6fb4;">(万方/年)</span></label>
-                <input type="number" id="q" step="1" min="0" value="100000" placeholder="例: 100000">
+                <!-- 移除 value 属性，改为空 -->
+                <input type="number" id="q" step="1" min="0" placeholder="例: 100000">
             </div>
             <div class="input-row">
                 <label>🔵 起点压力 P1 <span style="color:#1f6fb4;">(MPa)</span></label>
-                <input type="number" id="p1" step="0.1" min="0" value="6.0" placeholder="例: 6.0">
+                <input type="number" id="p1" step="0.1" min="0" placeholder="例: 6.0">
             </div>
             <div class="input-row">
                 <label>🔴 终点压力 P2 <span style="color:#1f6fb4;">(MPa)</span></label>
-                <input type="number" id="p2" step="0.1" min="0" value="4.0" placeholder="例: 4.0">
+                <input type="number" id="p2" step="0.1" min="0" placeholder="例: 4.0">
             </div>
             <div class="input-row">
                 <label>📏 管道长度 L <span style="color:#1f6fb4;">(km)</span></label>
-                <input type="number" id="l" step="0.1" min="0" value="50" placeholder="例: 50">
+                <input type="number" id="l" step="0.1" min="0" placeholder="例: 50">
             </div>
         </div>
 
         <button class="btn-calc" id="calculate">⚡ 计算推荐管径</button>
 
-        <!-- 高度压缩的结果区域：一行显示标签、数值、DN建议 -->
         <div class="result-area" id="resultBox">
             <span class="result-label">推荐内径</span>
             <div style="display: flex; align-items: center; gap: 8px;">
                 <div class="result-value-section">
-                    <span class="result-value" id="diaValue">700</span>
+                    <span class="result-value" id="diaValue">—</span>
                     <span class="result-unit">mm</span>
                 </div>
-                <span class="dn-suggestion" id="dnSuggestion">≈ DN800</span>
+                <span class="dn-suggestion" id="dnSuggestion"></span>
             </div>
         </div>
     </div>
@@ -222,6 +217,17 @@
             const FIXED_TEMP_K = 15 + 273.15;
 
             const DN_LIST = [40, 50, 65, 80, 100, 125, 150, 200, 250, 300, 350, 400, 450, 500, 600, 700, 800, 900, 1000, 1200, 1400];
+
+            // 页面加载时清空所有输入框（但现在已经没有value属性了，这步可省略，保留作为保险）
+            window.addEventListener('load', function() {
+                qInp.value = '';
+                p1Inp.value = '';
+                p2Inp.value = '';
+                lInp.value = '';
+                // 显示区域保持为空
+                diaSpan.innerText = '—';
+                dnSpan.innerText = '';
+            });
 
             function computeDiameter(q_wanPerYear, p1_mpa, p2_mpa, l_km) {
                 if (q_wanPerYear <= 0 || p1_mpa <= 0 || p2_mpa <= 0 || l_km <= 0) return NaN;
@@ -253,16 +259,23 @@
                 const p2 = parseFloat(p2Inp.value);
                 const l = parseFloat(lInp.value);
 
+                // 如果任何输入框为空，清空结果显示
+                if (qInp.value === '' || p1Inp.value === '' || p2Inp.value === '' || lInp.value === '') {
+                    diaSpan.innerText = '—';
+                    dnSpan.innerText = '';
+                    return;
+                }
+
                 if (isNaN(q) || isNaN(p1) || isNaN(p2) || isNaN(l)) {
                     diaSpan.innerText = '?';
-                    dnSpan.innerText = '请输入完整参数';
+                    dnSpan.innerText = '请输入有效数字';
                     return;
                 }
 
                 const d_mm = computeDiameter(q, p1, p2, l);
                 if (isNaN(d_mm) || !isFinite(d_mm)) {
                     diaSpan.innerText = '—';
-                    dnSpan.innerText = '参数不合理 (P1需>P2)';
+                    dnSpan.innerText = 'P1需大于P2';
                     return;
                 }
 
@@ -273,7 +286,6 @@
 
             calcBtn.addEventListener('click', updateResult);
             [qInp, p1Inp, p2Inp, lInp].forEach(inp => inp.addEventListener('input', updateResult));
-            window.addEventListener('load', updateResult);
         })();
     </script>
 </body>
