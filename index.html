@@ -12,40 +12,38 @@
             justify-content: center; 
             align-items: center; 
             min-height: 100vh; 
-            margin: 10px; /* 减小边距 */
+            margin: 8px;
         }
         .calculator-card {
-            max-width: 500px; /* 稍微收窄 */
+            max-width: 480px;
             width: 100%;
             background: white;
-            border-radius: 24px; /* 稍微减小圆角 */
-            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
-            padding: 20px 22px; /* 减小内边距 */
-            transition: 0.2s;
+            border-radius: 22px;
+            box-shadow: 0 12px 24px rgba(0,0,0,0.1);
+            padding: 16px 18px;
         }
         h2 {
-            margin-top: 0;
-            margin-bottom: 10px; /* 减小下边距 */
+            margin: 0 0 8px 0;
             font-weight: 600;
             color: #0b2b4a;
-            font-size: 1.7rem; /* 稍微减小字号 */
+            font-size: 1.6rem;
             text-align: center;
         }
         .sub {
             color: #3a5e7a;
-            font-size: 0.85rem; /* 稍微减小字号 */
-            margin-bottom: 16px; /* 减小下边距 */
-            border-left: 4px solid #2b7fc1;
-            padding-left: 12px;
+            font-size: 0.8rem;
+            margin-bottom: 12px;
+            border-left: 3px solid #2b7fc1;
+            padding-left: 10px;
             background: #f0f9ff;
-            border-radius: 0 10px 10px 0;
-            line-height: 1.4;
+            border-radius: 0 8px 8px 0;
+            line-height: 1.3;
         }
         .input-grid {
             display: flex;
             flex-direction: column;
-            gap: 12px; /* 减小间距 */
-            margin-bottom: 18px; /* 减小下边距 */
+            gap: 10px;
+            margin-bottom: 14px;
         }
         .input-row {
             display: flex;
@@ -54,120 +52,123 @@
         label {
             font-weight: 500;
             color: #1e3b5c;
-            margin-bottom: 4px; /* 减小下边距 */
-            font-size: 0.9rem;
+            margin-bottom: 3px;
+            font-size: 0.85rem;
             display: flex;
             align-items: center;
-            gap: 6px;
+            gap: 4px;
         }
         input {
-            padding: 12px 16px; /* 减小内边距 */
+            padding: 10px 14px;
             border: 1.5px solid #dde7f0;
-            border-radius: 16px; /* 稍微减小圆角 */
-            font-size: 0.95rem;
-            transition: 0.2s;
+            border-radius: 14px;
+            font-size: 0.9rem;
             background: #f9fcff;
         }
         input:focus {
             border-color: #2b7fc1;
             outline: none;
             background: white;
-            box-shadow: 0 0 0 4px rgba(43,127,193,0.1);
+            box-shadow: 0 0 0 3px rgba(43,127,193,0.1);
         }
-        .fixed-badge {
-            background: #e9eef3;
-            padding: 5px 10px;
-            border-radius: 30px;
-            font-size: 0.85rem;
+        .constant-section {
+            background: #f0f5fa;
+            border-radius: 12px;
+            padding: 8px 10px;
+            margin: 8px 0 12px;
+            border-left: 3px solid #2b7fc1;
+        }
+        .constant-title {
+            font-weight: 600;
+            font-size: 0.8rem;
             color: #1e3b5c;
-            display: inline-flex;
+            margin-right: 6px;
+            white-space: nowrap;
+        }
+        .constant-tags {
+            display: flex;
+            flex-wrap: wrap;
             align-items: center;
-            gap: 6px;
-            margin-bottom: 8px;
+            gap: 4px;
+        }
+        .constant-item {
+            background: white;
+            padding: 3px 8px;
+            border-radius: 20px;
+            border: 1px solid #cbdae9;
+            font-weight: 500;
+            font-size: 0.8rem;
+            white-space: nowrap;
         }
         .result-area {
             background: #e7f1fa;
-            border-radius: 20px;
-            padding: 16px 16px; /* 减小内边距 */
-            text-align: center;
-            margin: 18px 0 12px; /* 减小上下边距 */
+            border-radius: 16px;
+            padding: 10px 12px;
+            margin: 14px 0 8px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
         }
         .result-label {
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             color: #0f3b5e;
-            letter-spacing: 1px;
+            font-weight: 500;
+        }
+        .result-value-section {
+            display: flex;
+            align-items: baseline;
+            gap: 4px;
         }
         .result-value {
-            font-size: 2.8rem; /* 稍微减小字号 */
+            font-size: 2.2rem;
             font-weight: 700;
             color: #0c4e8c;
-            line-height: 1.2;
+            line-height: 1;
         }
         .result-unit {
-            font-size: 1.1rem;
+            font-size: 1rem;
             color: #3e6a97;
-            margin-left: 6px;
+        }
+        .dn-suggestion {
+            font-size: 0.9rem;
+            color: #2569a2;
+            font-weight: 500;
+            margin-left: 8px;
+            white-space: nowrap;
         }
         .btn-calc {
             background: #1c6fb4;
             color: white;
             border: none;
-            border-radius: 36px; /* 稍微减小圆角 */
-            padding: 14px; /* 减小内边距 */
-            font-size: 1.1rem;
+            border-radius: 30px;
+            padding: 12px;
+            font-size: 1rem;
             font-weight: 600;
             width: 100%;
             cursor: pointer;
             transition: 0.2s;
-            box-shadow: 0 6px 14px rgba(28,111,180,0.3);
+            box-shadow: 0 4px 10px rgba(28,111,180,0.3);
         }
         .btn-calc:hover {
             background: #0f5a9a;
-            transform: scale(0.99);
-        }
-        hr {
-            border: 1px solid #d3e2f0;
-            margin: 15px 0 8px;
-        }
-        .constant-note {
-            background: #f0f5fa;
-            border-radius: 14px;
-            padding: 10px 14px; /* 减小内边距 */
-            margin: 10px 0 12px; /* 减小上下边距 */
-            border-left: 4px solid #2b7fc1;
-            font-size: 0.9rem;
-            color: #1e3b5c;
-        }
-        .constant-item {
-            display: inline-block;
-            background: white;
-            padding: 3px 10px;
-            border-radius: 24px;
-            margin: 3px 5px 3px 0;
-            border: 1px solid #cbdae9;
-            font-weight: 500;
-            font-size: 0.85rem;
         }
     </style>
 </head>
 <body>
     <div class="calculator-card">
-        <!-- 标题居中 -->
         <h2>🔧 燃气管径计算器</h2>
-        
-        <!-- 恢复副标题 -->
         <div class="sub">基于 GB 50251 (威莫斯公式) · 固定参数已内置</div>
 
-        <!-- 固定参数显示区域（移除了“(固定)”文字） -->
-        <div class="constant-note">
-            <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin-bottom: 4px;">
-                <span style="font-weight: 600;">📌 本计算器使用以下固定参数：</span>
-            </div>
-            <div>
-                <span class="constant-item">⚖️ 相对密度 Δ = 0.6</span>
-                <span class="constant-item">📦 压缩因子 Z = 0.8</span>
-                <span class="constant-item">⚙️ 效率系数 E = 0.9</span>
-                <span class="constant-item">🌡️ 气体温度 = 15℃</span> <!-- 删除了(固定) -->
+        <!-- 固定参数一行显示 -->
+        <div class="constant-section">
+            <div style="display: flex; align-items: center; gap: 6px;">
+                <span class="constant-title">📌固定参数：</span>
+                <div class="constant-tags">
+                    <span class="constant-item">Δ=0.6</span>
+                    <span class="constant-item">Z=0.8</span>
+                    <span class="constant-item">E=0.9</span>
+                    <span class="constant-item">15℃</span>
+                </div>
             </div>
         </div>
 
@@ -188,26 +189,25 @@
                 <label>📏 管道长度 L <span style="color:#1f6fb4;">(km)</span></label>
                 <input type="number" id="l" step="0.1" min="0" value="50" placeholder="例: 50">
             </div>
-            <!-- 温度输入框已移除 -->
         </div>
 
         <button class="btn-calc" id="calculate">⚡ 计算推荐管径</button>
 
+        <!-- 高度压缩的结果区域：一行显示标签、数值、DN建议 -->
         <div class="result-area" id="resultBox">
-            <div class="result-label">推荐内径 (计算值)</div>
-            <div>
-                <span class="result-value" id="diaValue">700</span>
-                <span class="result-unit">mm</span>
+            <span class="result-label">推荐内径</span>
+            <div style="display: flex; align-items: center; gap: 8px;">
+                <div class="result-value-section">
+                    <span class="result-value" id="diaValue">700</span>
+                    <span class="result-unit">mm</span>
+                </div>
+                <span class="dn-suggestion" id="dnSuggestion">≈ DN800</span>
             </div>
-            <div style="font-size:0.9rem; margin-top:6px; color:#2569a2;" id="dnSuggestion">≈ DN800</div>
         </div>
-
-        <!-- 公式说明区域和底部提示已完全删除 -->
     </div>
 
     <script>
         (function() {
-            // 获取dom元素
             const qInp = document.getElementById('q');
             const p1Inp = document.getElementById('p1');
             const p2Inp = document.getElementById('p2');
@@ -216,70 +216,37 @@
             const dnSpan = document.getElementById('dnSuggestion');
             const calcBtn = document.getElementById('calculate');
 
-            // 固定参数
-            const DELTA = 0.6;           // 气体相对密度
-            const Z = 0.8;                // 压缩因子
-            const E = 0.9;                 // 效率系数
-            const FIXED_TEMP_C = 15;       // 固定温度 15℃
-            const FIXED_TEMP_K = FIXED_TEMP_C + 273.15; // 转换为开尔文
+            const DELTA = 0.6;
+            const Z = 0.8;
+            const E = 0.9;
+            const FIXED_TEMP_K = 15 + 273.15;
 
-            // 常用公称直径列表（单位：mm）- 按从小到大排序
             const DN_LIST = [40, 50, 65, 80, 100, 125, 150, 200, 250, 300, 350, 400, 450, 500, 600, 700, 800, 900, 1000, 1200, 1400];
 
-            // 计算核心函数 (返回 mm)
             function computeDiameter(q_wanPerYear, p1_mpa, p2_mpa, l_km) {
-                // 输入有效性
                 if (q_wanPerYear <= 0 || p1_mpa <= 0 || p2_mpa <= 0 || l_km <= 0) return NaN;
                 if (p1_mpa <= p2_mpa) return NaN;
 
-                // 单位转换
                 const q_m3perDay = q_wanPerYear * 10000 / 365;
                 const pDiff = Math.pow(p1_mpa, 2) - Math.pow(p2_mpa, 2);
                 if (pDiff <= 0) return NaN;
 
-                // 分子 (使用固定温度)
                 const numerator = Math.pow(q_m3perDay, 2) * DELTA * Z * FIXED_TEMP_K * l_km;
-                // 分母
                 const denominator = Math.pow(1051, 2) * Math.pow(E, 2) * pDiff;
                 if (denominator <= 0) return NaN;
 
-                // 开五次方 → cm → mm
-                const d_cm = Math.pow(numerator / denominator, 1/5);
-                const d_mm = d_cm * 10;
-
-                return d_mm;
+                return Math.pow(numerator / denominator, 1/5) * 10;
             }
 
-            // 四舍五入取整（保留整数）
-            function roundResult(val) {
-                return Math.round(val);
-            }
-
-            /**
-             * 向上取整到最接近的常用公称直径
-             * @param {number} mm 计算得到的管径（mm）
-             * @returns {string} 推荐的DN值描述
-             */
             function suggestDN(mm) {
                 if (mm <= 0) return '参数无效';
-                
-                // 如果小于最小DN，直接返回最小DN
-                if (mm <= DN_LIST[0]) {
-                    return `DN${DN_LIST[0]}`;
-                }
-                
-                // 向上取整：找到第一个大于等于 mm 的DN值
+                if (mm <= DN_LIST[0]) return `DN${DN_LIST[0]}`;
                 for (let i = 0; i < DN_LIST.length; i++) {
-                    if (DN_LIST[i] >= mm) {
-                        return `DN${DN_LIST[i]}`;
-                    }
+                    if (DN_LIST[i] >= mm) return `DN${DN_LIST[i]}`;
                 }
-                
-                // 如果大于所有列出的DN值，返回最大DN并提示
                 return `DN${DN_LIST[DN_LIST.length-1]} 或更大`;
             }
 
-            // 更新UI
             function updateResult() {
                 const q = parseFloat(qInp.value);
                 const p1 = parseFloat(p1Inp.value);
@@ -299,18 +266,13 @@
                     return;
                 }
 
-                const rounded = roundResult(d_mm);
+                const rounded = Math.round(d_mm);
                 diaSpan.innerText = rounded;
-
-                const dnText = suggestDN(rounded);
-                dnSpan.innerText = `≈ ${dnText}`;
+                dnSpan.innerText = `≈ ${suggestDN(rounded)}`;
             }
 
-            // 绑定事件
             calcBtn.addEventListener('click', updateResult);
-            [qInp, p1Inp, p2Inp, lInp].forEach(inp => {
-                inp.addEventListener('input', updateResult);
-            });
+            [qInp, p1Inp, p2Inp, lInp].forEach(inp => inp.addEventListener('input', updateResult));
             window.addEventListener('load', updateResult);
         })();
     </script>
